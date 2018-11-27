@@ -20,7 +20,7 @@ if [ -f /etc/os-release ]; then
     . /etc/os-release
     OS=$NAME
     VER=$VERSION_ID
-# else get it from lsb_release if able to type it out
+# # else get it from lsb_release if able to type it out
 elif type lsb_release >/dev/null 2>&1; then
     # linuxbase.org
     OS=$(lsb_release -si)
@@ -36,14 +36,13 @@ else
     OS=$(uname -s)
     VER=$(uname -r)
 fi
-# Display OS and VER variables
-#printf "And you are running $OS version $VER" | tee -a logfile.txt
 
+# var="$(printf "FORMAT" var1)"
 # Environment verification
 printf "Checking if you have installed the necessary tools!\n\n" | tee -a logfile.txt
 # Check if operating system is ubuntu or OsX Darwin
 if [ $OS == "Ubuntu" ] || [$OS = "Darwin    " ]; then
-    printf "You have the required OS\n" | tee -a logfile.txt
+    printf "$OS $VER fits the requirements\n" | tee -a logfile.txt
 else 
     printf "You do not have the required OS. Ubuntu or OsX are supported\n\n" | tee -a logfile.txt
 fi
