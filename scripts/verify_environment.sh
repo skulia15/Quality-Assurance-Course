@@ -13,7 +13,8 @@ printf "Welcome $currentUser, This script checks if you have the necessary tools
 # Display current users linux version
 #printf "You are running Bash in version $BASH_VERSION \n\n"
 
-# Failsafe way to get OS and version. Credit: https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
+# Failsafe way to get OS and version. 
+# Credit: https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
 # Checks release in the os-release file, if it exists
 if [ -f /etc/os-release ]; then
     . /etc/os-release
@@ -40,14 +41,14 @@ fi
 
 # Environment verification
 printf "Checking if you have installed the necessary tools!\n\n" | tee -a logfile.txt
-# Check if operating system is ubuntu or OsX
-if [ $OS == "Ubuntu" ] || [$OS = "OsX" ]; then
+# Check if operating system is ubuntu or OsX Darwin
+if [ $OS == "Ubuntu" ] || [$OS = "Darwin    " ]; then
     printf "You have the required OS\n" | tee -a logfile.txt
 else 
     printf "You do not have the required OS. Ubuntu or OsX are supported\n\n" | tee -a logfile.txt
 fi
-
 if ! [ -x "$(command -v git)" ]; then
+    # Git is not installd
     printf 'Error: git is not installed.' | tee -a logfile.txt
 else 
     # Run git version command
@@ -56,6 +57,7 @@ else
 fi
 
 if ! [ -x "$(command -v npm)" ]; then
+    # Npm is not installed 
     printf 'Error: Npm is not installed.' | tee -a logfile.txt
 else
     # Run npm version command
@@ -64,6 +66,7 @@ else
 fi
 
 if ! [ -x "$(command -v nodejs)" ]; then
+    # NodeJS is not installed
     printf 'Error: NodeJS is not installed.' | tee -a logfile.txt
 else
     # Run nodejs version command

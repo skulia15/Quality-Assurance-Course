@@ -1,4 +1,4 @@
-Time of start: 2018-11-26 12:57:57, 849ms
+Time of start: 2018-11-27 09:46:17, 182ms
 
 Welcome skulipardus, This script checks if you have the necessary tools and OS for the hgop course 
 
@@ -9,4 +9,4 @@ Git: git version 2.7.4
 Npm: 6.0.0
 NodeJS: v4.2.6
 
-Time of end:  2018-11-26 12:57:58, 044ms
+Time of end:  2018-11-27 09:46:17, 365ms
