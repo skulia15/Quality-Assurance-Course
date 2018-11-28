@@ -1,6 +1,9 @@
 # Answers Day 1 Linux
 
 ## What is Linux?
-    
-
+Linus is a family of free and open source source operating systems. Packaged Linux systems are know as distributions, popular distributions include Ubuntu, Arch Linux, Debian and fertora among many more. Linux is the most used operating system today. It is popular for server use and is prominent in servers, mobile phones, tablets and smartTV's as well as desktop environments. Linux is UNIX like, meaning that the OS and its key components are similar. Linux is light weight, highly customizable and is generally more secure than competing OS's. The Linux operating system is a set of programs, tools and services bundled together with the Linux kernel to create the Linux operating system.
 ## Why use Linux? What are the pros and cons?
+
+PROS: Linux is free and open source meaning its code is viewable and open for contributions and modifications. Its generally more stable and secure. It is lightweigt and runs faster than competing operating systems and uses less disk space. It has multiple distributions readily available. It runs on any computer and allows access to the computers resources in case of a malfunction. 
+
+CONS: Linux is not for everyone meaning, it has a high learning curve and does not appeal well to the general user. It's not as user friendly as Windows for example. A huge benefit of Linux is the use of the command line and tools, however the general user is not likely of taking advantage of it unless having to educate themselves first. Users who like playing video ganes on PC will much rather use Windows because most games are not compatible with Linux. The same goes for much of software and programs. Getting help for computer problems can be hard without knowing where to look and being able to fix the issue yourself. Peripheral devices such as webcams, wireless headphones and printers can cause compatability issues will require you to look for drivers and fixes for those issues yourself instead of the 'plug and play' users have come to expect.
