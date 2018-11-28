@@ -17,22 +17,28 @@ printf "Welcome $currentUser, This script checks if you have the necessary tools
 # Credit: https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
 # Checks release in the os-release file, if it exists
 if [ -f /etc/os-release ]; then
+    # Execute commands from the file /etc/os-release
     . /etc/os-release
+    # Gets the variables from the file
     OS=$NAME
     VER=$VERSION_ID
 # # else get it from lsb_release if able to type it out
 elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
+    # for linuxbase.org
+    # Gets the variables from the file
     OS=$(lsb_release -si)
     VER=$(lsb_release -sr)
 # else get the variables from the lsb_release file
 elif [ -f /etc/lsb-release ]; then
     # For some versions of Debian/Ubuntu without lsb_release command
+    # Execute commands from the file /etc/os-release
     . /etc/lsb-release
+    # Gets the variables from lsb_release
     OS=$DISTRIB_ID
     VER=$DISTRIB_RELEASE
 else
     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    # Gets OS and Version from executing the uname command with appropriate parameters
     OS=$(uname -s)
     VER=$(uname -r)
 fi
