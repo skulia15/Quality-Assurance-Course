@@ -48,7 +48,7 @@ fi
 printf "Checking if you have installed the necessary tools!\n\n" | tee -a logfile.txt
 # Check if operating system is ubuntu or OsX Darwin
 if [ $OS == "Ubuntu" ] || [$OS = "Darwin    " ]; then
-    printf "$OS $VER fits the requirements\n" | tee -a logfile.txt
+    printf "Your Linux system, $OS $VER fits the requirements\n" | tee -a logfile.txt
 else 
     printf "You do not have the required OS. Ubuntu or OsX are supported\n\n" | tee -a logfile.txt
 fi
