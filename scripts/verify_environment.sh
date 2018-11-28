@@ -46,31 +46,41 @@ if [ $OS == "Ubuntu" ] || [$OS = "Darwin    " ]; then
 else 
     printf "You do not have the required OS. Ubuntu or OsX are supported\n\n" | tee -a logfile.txt
 fi
+# Check for precence of Ǵit
 if ! [ -x "$(command -v git)" ]; then
     # Git is not installd
-    printf 'Error: git is not installed.' | tee -a logfile.txt
+    printf 'Error: git is not installed.\n' | tee -a logfile.txt
 else 
     # Run git version command
     OUTPUT="$(git --version)"
     printf "Git: ${OUTPUT}\n" | tee -a logfile.txt
 fi
-
+# Check for precence of Npm
 if ! [ -x "$(command -v npm)" ]; then
     # Npm is not installed 
-    printf 'Error: Npm is not installed.' | tee -a logfile.txt
+    printf 'Error: Npm is not installed.\n' | tee -a logfile.txt
 else
     # Run npm version command
     OUTPUT="$(npm --version)"
     printf "Npm: ${OUTPUT}\n" | tee -a logfile.txt
 fi
-
+# Check for precence of NodeJS
 if ! [ -x "$(command -v nodejs)" ]; then
     # NodeJS is not installed
-    printf 'Error: NodeJS is not installed.' | tee -a logfile.txt
+    printf 'Error: NodeJS is not installed.\n' | tee -a logfile.txt
 else
     # Run nodejs version command
-    OUTPUT="$(nodejs --version)"
-    printf "NodeJS: ${OUTPUT}\n\n" | tee -a logfile.txt
+    OUTPUT="$(nodejs --version)\n"
+    printf "NodeJS: ${OUTPUT}" | tee -a logfile.txt
+fi
+# Check for precence of aws
+if ! [ -x "$(command -v aws)" ]; then
+    # NodeJS is not installed
+    printf 'Error: aws is not installed.\n' | tee -a logfile.txt
+else
+    # Run nodejs version command
+    OUTPUT="$(aws --version)"
+    printf "aws: ${OUTPUT}\n\n" | tee -a logfile.txt
 fi
 
 # Display time of end using the defined date format
