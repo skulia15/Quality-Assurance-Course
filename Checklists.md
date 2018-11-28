@@ -1,5 +1,5 @@
 # day 1
-- [ ] I have answered the questions about Linux
+- [x] I have answered the questions about Linux
 - [x] I have created an executable script that completes all requirements
     - [x] Make sure all bash commands are commented.
     The script should prompt the user with:
