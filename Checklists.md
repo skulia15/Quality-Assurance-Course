@@ -49,7 +49,7 @@
 - [x] I have AWS cli installed.
 
 # day 4
--[x] `
+- [x] `
     Start with no running instances on AWS.
     Run:
 
@@ -61,7 +61,8 @@
     You should see output:
 
     The API is running! `
-    - [x] # TODO exit 1 if there is no docker-compose.yml file present. in initialize game script
-    - [x] comments in infrastructure.tf file
+
+- [x] # TODO exit 1 if there is no docker-compose.yml file present. in initialize game script
+- [x] comments in infrastructure.tf file
 # day 5
 - [ ] Hand in your assignment
