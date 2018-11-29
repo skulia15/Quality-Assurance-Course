@@ -35,7 +35,7 @@ echo "Creating a new instance using Terraform"
 terraform init
 echo "Deploying the created instance."
 terraform apply -auto-approve
-echo "Runing the initialization script on the new instance."
+echo "Running the initialization script on the new instance."
 chmod 400 ~/.aws/GameKeyPair.pem
 ssh -o StrictHostKeyChecking=no -i "~/.aws/GameKeyPair.pem" ubuntu@$(terraform output public_ip) "./initialize_game_api_instance.sh"
 

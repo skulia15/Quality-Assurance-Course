@@ -7,7 +7,7 @@ provider "aws" {
 }
 
 # Define a security group for the instance with the name GameSecurityGroup.
-# This configures the connections for the instance. Which posrts and networking protocol to use.
+# This configures the connections for the instance. Which ports and networking protocol to use.
 resource "aws_security_group" "game_security_group" {
   name   = "GameSecurityGroup"
 
