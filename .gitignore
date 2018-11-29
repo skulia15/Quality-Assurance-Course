@@ -1,2 +1,6 @@
-*.tf
+*.log
+
+#Terraform files
 *.tfstate
+*.tfstate.backup
+.terraform/
