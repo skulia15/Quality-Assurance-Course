@@ -65,4 +65,4 @@
 - [x] # TODO exit 1 if there is no docker-compose.yml file present. in initialize game script
 - [x] comments in infrastructure.tf file
 # day 5
-- [ ] Hand in your assignment
+- [x] Hand in your assignment
