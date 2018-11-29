@@ -36,7 +36,7 @@
 - [x] I've posted the 12 animals to the API.
 - [x] I've gotten the expected 10 items back.
 ## part 4
-- [ ] I've aswered all of the questions.
+- [x] I've aswered all of the questions.
 
 
 # day 3
@@ -49,7 +49,7 @@
 - [x] I have AWS cli installed.
 
 # day 4
-`
+-[x] `
     Start with no running instances on AWS.
     Run:
 
@@ -61,5 +61,7 @@
     You should see output:
 
     The API is running! `
+    - [x] # TODO exit 1 if there is no docker-compose.yml file present. in initialize game script
+    - [x] comments in infrastructure.tf file
 # day 5
 - [ ] Hand in your assignment
