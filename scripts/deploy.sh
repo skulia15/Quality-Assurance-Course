@@ -33,7 +33,7 @@ terraform destroy -auto-approve
 # Create a new instance using Terraform.
 echo "Creating a new instance using Terraform"
 terraform init
-echo "Deploying the created instanc."
+echo "Deploying the created instance."
 terraform apply -auto-approve
 echo "Runing the initialization script on the new instance."
 chmod 400 ~/.aws/GameKeyPair.pem
