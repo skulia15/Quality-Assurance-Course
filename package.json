@@ -1,0 +1,28 @@
+{
+  "name": "quality-assurance-course",
+  "version": "1.0.0",
+  "description": "Reykjavík University Quality assurance course Skúli Arnarsson ## Week 1 Handin URL to the instance running the API: http://54.84.207.159:3000/ To check the status http://54.84.207.159:3000/status",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^23.6.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testRegex" : "\\.unit-tests\\.js$"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:unit": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skulia15/Quality-Assurance-Course.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skulia15/Quality-Assurance-Course/issues"
+  },
+  "homepage": "https://github.com/skulia15/Quality-Assurance-Course#readme"
+}
