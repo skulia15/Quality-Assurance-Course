@@ -130,8 +130,74 @@ test('getCard get all of the players cards after draw', () => {
   // Assert
   // console.log(game.state.cards);
   expect(res).toBe(['05L', '01D', '09S', '10H']);
-});
+}); 
+
+
+test('getCardValue of 02-09', () => {
+  // Arrange
+  let deck = deckConstructor();
+  deck = [
+      '10H', '09S', '01D', '05L',
+  ];
+
+  let dealer = dealerConstructor();
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => {};
+  
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.state.card = dealer.draw(deck);
+  var res = game.getCardValue(game);
+  // Assert
+  // console.log(game.state.cards);
+  expect(res).toEqual(9);
+}); 
+
+test('getCardValue of 10-13', () => {
+  // Arrange
+  let deck = deckConstructor();
+  deck = [
+      '10H', '13C', '01D', '05L',
+  ];
+
+  let dealer = dealerConstructor();
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => {};
+  
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.state.card = dealer.draw(deck);
+  var res = game.getCardValue(game);
+  // Assert
+  // console.log(game.state.cards);
+  expect(res).toEqual(10);
+}); 
+
+test('getCardValue of Ace', () => {
+  // Arrange
+  let deck = deckConstructor();
+  deck = [
+      '10H', '01C', '01D', '05L',
+  ];
+
+  let dealer = dealerConstructor();
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => {};
+  
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.state.card = dealer.draw(deck);
+  var res = game.getCardValue(game);
+  // Assert
+  // console.log(game.state.cards);
+  expect(res).toEqual(10);
+}); 
 
 
 //Test drawing all cards in a deck?
-//Test if first two cards exceed 21?
