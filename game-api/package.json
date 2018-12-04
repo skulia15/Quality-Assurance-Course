@@ -8,7 +8,7 @@
   },
   "jest": {
     "verbose": true,
-    "testRegex" : "\\.unit-tests\\.js$"
+    "testRegex": "\\.unit-tests\\.js$"
   },
   "devDependencies": {},
   "scripts": {
