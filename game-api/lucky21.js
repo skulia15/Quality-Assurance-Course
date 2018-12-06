@@ -1,4 +1,10 @@
-module.exports = (deck, dealer) => {
+module.exports = (context) => {
+  const deckConstructor = context('deck');
+  const deck = deckConstructor(context);
+
+  const dealerConstructor = context('dealer');
+  const dealer = dealerConstructor(context);
+
   dealer.shuffle(deck);
   const card0 = dealer.draw(deck);
   const card1 = dealer.draw(deck);
@@ -10,9 +16,7 @@ module.exports = (deck, dealer) => {
       card1,
     ],
     // The card that the player thinks will exceed 21.
-    card: undefined, // Use the current card to indicate the players guess.
-    // If undefined the guess was under 21.
-    // If card has some value the guess is over 21.
+    card: undefined,
   };
 
   return {
@@ -109,6 +113,8 @@ module.exports = (deck, dealer) => {
     },
     // Player action (void).
     guessOver21: (game) => {
+      console.log('######Deck ' + deck); 
+
       game.state.card = dealer.draw(deck);
     },
   };
