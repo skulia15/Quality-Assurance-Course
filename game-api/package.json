@@ -10,10 +10,14 @@
     "verbose": true,
     "testRegex": "\\.unit-tests\\.js$"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-google": "^0.11.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "eslint": "eslint \"**/*.js\""
   },
   "repository": {
     "type": "git",
