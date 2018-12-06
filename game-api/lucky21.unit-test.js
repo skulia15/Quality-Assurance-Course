@@ -369,7 +369,7 @@ describe('getCard', () => {
     deck = [
       '10H', '09S', '01D', '05L',
     ];
-    
+
     // Inject our dependencies
     const game = gameConstructorMockDealer(deck);
 

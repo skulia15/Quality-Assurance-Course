@@ -113,8 +113,6 @@ module.exports = (context) => {
     },
     // Player action (void).
     guessOver21: (game) => {
-      console.log('######Deck ' + deck); 
-
       game.state.card = dealer.draw(deck);
     },
   };
