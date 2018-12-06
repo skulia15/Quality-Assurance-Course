@@ -1,11 +1,6 @@
 node {
     def git = checkout scm
 
-    stage("Build") {
-        sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
-        sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
-    }
-
     // Wipe out all the files that have not been git added to our repository 
     // and remove all changes that might have been made to the files that git is tracking
     stage("Clean") {
@@ -23,8 +18,14 @@ node {
         sh "cd game-api ; npm run eslint"
     }
 
+    stage("Build") {
+        sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
+        sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
+    }
+
     stage("Test") {
         sh "cd game-api ; npm run test:unit"
     }
+    
     build job: 'Deployment stage', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]
 }
