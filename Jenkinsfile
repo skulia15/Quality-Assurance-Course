@@ -18,4 +18,8 @@ node {
     stage("Setup") {
         sh "cd game-api ; npm install"
     }
+
+    stage("Lint") {
+        sh "cd game-api ; npm run eslint"
+    }
 }
