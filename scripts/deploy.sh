@@ -25,6 +25,7 @@ if [ ! -f "`echo $HOME`/.aws/GameKeyPair.pem" ]; then
     exit 1
 fi
 
+TF_LOG=1
 
 echo "Deployment script started."
 # Destroy any running Terraform managed instances.
@@ -33,6 +34,9 @@ terraform destroy -auto-approve
 # Create a new instance using Terraform.
 echo "Creating a new instance using Terraform"
 terraform init
+#Temporary check, should be removed
+terraform plan
+
 echo "Deploying the created instance."
 terraform apply -auto-approve
 echo "Running the initialization script on the new instance."
