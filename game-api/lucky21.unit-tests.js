@@ -5,16 +5,16 @@ const lucky21Constructor = require('./lucky21.js');
 // Given Tests
 describe('Given Tests', () => {
   test('a new game should have 50 cards left in the deck', () => {
-    let deck = deckConstructor();
-    let dealer = dealerConstructor();
-    let game = lucky21Constructor(deck, dealer);
+    const deck = deckConstructor();
+    const dealer = dealerConstructor();
+    const game = lucky21Constructor(deck, dealer);
     expect(game.state.deck.length).toEqual(50);
   });
 
   test('a new game should have 2 drawn cards', () => {
-    let deck = deckConstructor();
-    let dealer = dealerConstructor();
-    let game = lucky21Constructor(deck, dealer);
+    const deck = deckConstructor();
+    const dealer = dealerConstructor();
+    const game = lucky21Constructor(deck, dealer);
     expect(game.state.cards.length).toEqual(2);
   });
 
@@ -22,18 +22,18 @@ describe('Given Tests', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-      '05C', '01D', '09S', '10H', 
+      '05C', '01D', '09S', '10H',
     ];
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    
+
     // Assert
     expect(game.state.cards.length).toEqual(3);
     expect(game.state.cards[2]).toEqual('01D');
@@ -48,38 +48,38 @@ describe('isGameOver', () => {
     deck = [
       '10H', '2C', '2D', '02L',
     ];
-    
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    let res = game.isGameOver(game);
+    const res = game.isGameOver(game);
     // Assert
     expect(res).toBe(false);
-  }); 
-  
+  });
+
   test('isGameOver when game is over when player loses', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
       '10H', '10C', '10D', '10L',
     ];
-    
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    let res = game.isGameOver(game);
+    const res = game.isGameOver(game);
     // Assert
     expect(res).toBe(true);
   });
@@ -90,63 +90,63 @@ describe('isGameOver', () => {
     deck = [
       '10H', '10C', '10D', '10L',
     ];
-    
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guessOver21(game);
-    let res = game.isGameOver(game);
+    const res = game.isGameOver(game);
     // Assert
     expect(res).toBe(true);
   });
-})
+});
 
 describe('playerWon', () => {
   test('playerWon when player won', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '10C', '10D', '10L',
+      '10H', '10C', '10D', '10L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guessOver21(game);
-    let res = game.playerWon(game);
-  
+    const res = game.playerWon(game);
+
     // Assert
     expect(res).toBe(true);
   });
-  
+
   test('playerWon when player lost', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '10C', '10D', '10L',
+      '10H', '10C', '10D', '10L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    let res = game.playerWon(game);
-  
+    const res = game.playerWon(game);
+
     // Assert
     expect(res).toBe(false);
   });
@@ -158,39 +158,39 @@ describe('getCardsValue', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '13C', '10D', '10L',
+      '10H', '13C', '10D', '10L',
     ];
 
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
+    const game = lucky21Constructor(deck, dealer);
 
     // Act
-    let res = game.getCardsValue(game);
+    const res = game.getCardsValue(game);
     // Assert
     expect(res).toEqual(20);
-  }); 
+  });
 
 
   test('getCardsValue of when 2 cards, with ace under 21', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '13C', '01D', '05L',
+      '10H', '13C', '01D', '05L',
     ];
 
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
+    const game = lucky21Constructor(deck, dealer);
 
     // Act
-    let res = game.getCardsValue(game);
+    const res = game.getCardsValue(game);
     // Assert
     expect(res).toEqual(16);
   });
@@ -199,20 +199,20 @@ describe('getCardsValue', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '01C', '12D', '12L',
+      '10H', '01C', '12D', '12L',
     ];
 
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
+    const game = lucky21Constructor(deck, dealer);
 
     // Act
     game.state.card = dealer.draw(deck);
     game.state.cards.push(game.getCard(game));
-    let res = game.getCardsValue(game);
+    const res = game.getCardsValue(game);
     // Assert
     expect(res).toEqual(21);
   });
@@ -223,61 +223,61 @@ describe('getCardValue', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '09S', '01D', '05L',
+      '10H', '09S', '01D', '05L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.state.card = dealer.draw(deck);
-    let res = game.getCardValue(game);
+    const res = game.getCardValue(game);
     // Assert
     expect(res).toEqual(9);
-  }); 
-  
+  });
+
   test('getCardValue of Royal', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '13C', '01D', '05L',
+      '10H', '13C', '01D', '05L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.state.card = dealer.draw(deck);
-    let res = game.getCardValue(game);
+    const res = game.getCardValue(game);
     // Assert
     expect(res).toEqual(10);
-  }); 
-  
+  });
+
   test('getCardValue of Ace', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '01C', '01D', '05L',
+      '10H', '01C', '01D', '05L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.state.card = dealer.draw(deck);
-    let res = game.getCardValue(game);
+    const res = game.getCardValue(game);
     // Assert
     expect(res).toEqual(11);
   });
@@ -288,19 +288,19 @@ describe('getTotal', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '04C', '03D', '02L',
+      '10H', '04C', '03D', '02L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    let res = game.getTotal(game);
+    const res = game.getTotal(game);
     // Assert
     expect(res).toEqual(9);
   });
@@ -309,86 +309,86 @@ describe('getTotal', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '04C', '03D', '02L',
+      '10H', '04C', '03D', '02L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
-    game.state.card = undefined
-    let res = game.getTotal(game);
+    game.state.card = undefined;
+    const res = game.getTotal(game);
 
     // Assert
     expect(res).toEqual(5);
-  }); 
+  });
 
   test('getTotal of three aces when guess under 21', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '01C', '01D', '01L',
+      '10H', '01C', '01D', '01L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    let res = game.getTotal(game);
+    const res = game.getTotal(game);
     // Assert
     expect(res).toEqual(13);
   });
-  
+
   test('getTotal with all card types, ace, normal, royal', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '13C', '7D', '01L',
+      '10H', '13C', '7D', '01L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-  
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
-    game.guess21OrUnder(game)
-    let res = game.getTotal(game);
+    game.guess21OrUnder(game);
+    const res = game.getTotal(game);
     // Assert
     expect(res).toEqual(18);
-  }); 
-})
+  });
+});
 
 describe('getCards', () => {
   test('getCards get all of the players cards when game initializes', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '05H', '05S', '05D', '05L',
+      '05H', '05S', '05D', '05L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     // Do nothing
-    
-    let res = game.getCards(game);
+
+    const res = game.getCards(game);
     // Assert
     expect(res).toEqual(['05L', '05D']);
   });
@@ -397,68 +397,67 @@ describe('getCards', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '05H', '05S', '05D', '05L',
+      '05H', '05S', '05D', '05L',
     ];
-  
-    let dealer = dealerConstructor();
+
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
     game.guess21OrUnder(game);
-  
-    
-    let res = game.getCards(game);
+
+
+    const res = game.getCards(game);
     // Assert
     expect(res).toEqual(['05L', '05D', '05S', '05H']);
   });
-})
+});
 
 // Test getCard
 describe('getCard', () => {
-
-test('getCard of valid card', () => {
+  test('getCard of valid card', () => {
   // Arrange
-  let deck = deckConstructor();
-  deck = [
-    '10H', '09S', '01D', '05L',
-  ];
+    let deck = deckConstructor();
+    deck = [
+      '10H', '09S', '01D', '05L',
+    ];
 
-  let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-  let game = lucky21Constructor(deck, dealer);
-  
-  // Act
-  game.state.card = dealer.draw(deck);
-  let res = game.getCard(game);
+    const game = lucky21Constructor(deck, dealer);
 
-  // Assert
-  expect(res).toEqual('09S');
-});
+    // Act
+    game.state.card = dealer.draw(deck);
+    const res = game.getCard(game);
 
-test('getCard of undefined card', () => {
+    // Assert
+    expect(res).toEqual('09S');
+  });
+
+  test('getCard of undefined card', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '09S', '01D', '05L',
+      '10H', '09S', '01D', '05L',
     ];
 
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
-    let res = game.getCard(game);
+    const res = game.getCard(game);
 
     // Assert
     expect(res).toBe(undefined);
@@ -468,19 +467,19 @@ test('getCard of undefined card', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '09S', '01D', '05L',
+      '10H', '09S', '01D', '05L',
     ];
 
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
-    let res = game.getCard(game);
+    const res = game.getCard(game);
 
     // Assert
     expect(res).toBe(undefined);
@@ -490,21 +489,20 @@ test('getCard of undefined card', () => {
 
 
 describe('guess21OrUnder', () => {
-  
   test('guess21OrUnder guess 2 times, expect card to be undefined and card length to be two more that initially', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '10H', '09S', '01D', '05L',
+      '10H', '09S', '01D', '05L',
     ];
 
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guess21OrUnder(game);
     game.guess21OrUnder(game);
@@ -520,24 +518,24 @@ describe('guessOver21', () => {
     // Arrange
     let deck = deckConstructor();
     deck = [
-        '05L', '01D', '09S', '10H', 
+      '05L', '01D', '09S', '10H',
     ];
-    let dealer = dealerConstructor();
+    const dealer = dealerConstructor();
     // Override the shuffle to do nothing.
     dealer.shuffle = (deck) => {};
-    
+
     // Inject our dependencies
-    let game = lucky21Constructor(deck, dealer);
-    
+    const game = lucky21Constructor(deck, dealer);
+
     // Act
     game.guessOver21(game, dealer);
-    
+
     // Assert
     expect(game.state.cards.length).toEqual(2);
     expect(game.state.cards[1]).toEqual('09S');
     expect(game.state.card).toEqual('01D');
   });
-})
+});
 // Test getCards when more than two cards
 // Test Aces
-//Test drawing all cards in a deck?
+// Test drawing all cards in a deck?
