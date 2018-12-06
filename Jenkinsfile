@@ -22,4 +22,8 @@ node {
     stage("Lint") {
         sh "cd game-api ; npm run eslint"
     }
+
+    stage("Test") {
+        sh "cd game-api ; npm run test:unit"
+    }
 }
