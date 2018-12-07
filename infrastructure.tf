@@ -55,10 +55,23 @@ resource "aws_instance" "game_server" {
       private_key = "${file("~/.aws/GameKeyPair.pem")}"
     }
   }
+
   # Moves the docker compose file from our local machine to the home directory of our instance with ssh connection.
   provisioner "file" {
     source      = "docker-compose.yml"
     destination = "/home/ubuntu/docker-compose.yml"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = "${file("~/.aws/GameKeyPair.pem")}"
+    }
+  }
+
+  # Moves the docker compose up script to the home directory of our instance with ssh connection.
+  provisioner "file" {
+    source      = "scripts/docker_compose_up.sh"
+    destination = "/home/ubuntu/docker_compose_up.sh"
 
     connection {
       type        = "ssh"
