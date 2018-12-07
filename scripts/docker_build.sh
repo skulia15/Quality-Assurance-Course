@@ -1,8 +1,5 @@
 #!/bin/bash
 
-GIT_COMMIT=$1
-
-cd game-api
-docker build -t skulipardus/hgop:$GIT_COMMIT .
-
-# TODO exit on error if any command fails
+GIT_COMMIT=$1 
+cd game-api || exit 1
+docker push username/repo:$GIT_COMMIT || exit 1

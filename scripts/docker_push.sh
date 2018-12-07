@@ -2,6 +2,4 @@
 
 GIT_COMMIT=$1
 
-docker push skulipardus/hgop:$GIT_COMMIT
-
-# TODO exit on error if any command fails
+docker push skulipardus/hgop:$GIT_COMMIT || exit 1
