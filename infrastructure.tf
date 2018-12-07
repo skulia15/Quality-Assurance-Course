@@ -88,8 +88,8 @@ resource "aws_instance" "game_server" {
   # Invokes a script on a remote resource after it is created. Make the script executable using chmod.
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /home/ubuntu/scripts/initialize_game_api_instance.sh",
-      "chmod +x /home/ubuntu/scripts/docker_compose_up.sh",
+      "chmod +x /home/ubuntu/initialize_game_api_instance.sh",
+      "chmod +x /home/ubuntu/docker_compose_up.sh",
     ]
 
     connection {

@@ -14,7 +14,6 @@ module.exports = function(context) {
 
   const client = getClient();
   setTimeout(() => client.connect((err) => {
-
     client.connect((err) => {
       if (err) {
         console.log('failed to connect to postgres!');
@@ -30,7 +29,7 @@ module.exports = function(context) {
         });
       }
     });
-  }), 2000);
+  }), 5000);
 
   return {
     insertResult: (won, score, total, onSuccess, onError) => {
