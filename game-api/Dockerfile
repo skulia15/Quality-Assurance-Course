@@ -4,11 +4,14 @@ FROM node:dubnium
 WORKDIR /code
 # Copy files from the local file system into the container.
 # Copy the package.json file so that the dependencies/packages are managed correctly and the container fetches the same packages as the local instance.
-COPY package.json package.json
+#COPY package.json package.json
 # Copy the database file to the container.
-COPY database.js database.js
+#COPY database.js database.js
 # Copy the app.js file to the container.
-COPY app.js app.js
+#COPY app.js app.js
+# Copies all files in the game-api directory except for the ones in the dockerignore file
+COPY . .
+
 # Run an installation process in the container to fetch all required dependencies
 RUN npm install --production
 # Main command, starts upp the app.js file.
