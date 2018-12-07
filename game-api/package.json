@@ -4,7 +4,8 @@
   "description": "Reykjavík University Quality assurance course Skúli Arnarsson ## Week 1 Handin URL to the instance running the API: http://54.84.207.159:3000/ To check the status http://54.84.207.159:3000/status",
   "main": "index.js",
   "dependencies": {
-    "jest": "^23.6.0"
+    "express": "^4.16.4",
+    "pg": "^7.7.1"
   },
   "jest": {
     "verbose": true,
@@ -12,7 +13,8 @@
   },
   "devDependencies": {
     "eslint": "^5.9.0",
-    "eslint-config-google": "^0.11.0"
+    "eslint-config-google": "^0.11.0",
+    "jest": "^23.6.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
