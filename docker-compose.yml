@@ -1,17 +1,17 @@
+
 version: '3'
 services:
   my_item_repository:
-    #image: ${GIT_COMMIT}
-    image:skulipardus/hgop:${GIT_COMMIT}
+    image: skulipardus/hgop:${GIT_COMMIT}
     ports:
     - '3000:3000'
     depends_on:
     - item_db_container
     environment:
-      PORT: 3000
       POSTGRES_DB: 'item_db'
       POSTGRES_USER: 'root'
       POSTGRES_PASSWORD: 'root123'
+      PORT: 3000
   # Postgres image to achieve functionality of API
   item_db_container:
     image: postgres
@@ -19,3 +19,4 @@ services:
       POSTGRES_DB: 'item_db'
       POSTGRES_USER: 'root'
       POSTGRES_PASSWORD: 'root123'
+      PORT: 3000
