@@ -117,6 +117,7 @@ module.exports = function(context) {
           const won = game.playerWon(game);
           const score = game.getCardsValue(game);
           const total = game.getTotal(game);
+          console.log('won: ' + won + 'score: ' + score + 'total: ' + total);
           database.insertResult(won, score, total, () => {
             console.log('Game result inserted to database');
           }, (err) => {

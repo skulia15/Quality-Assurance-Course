@@ -7,7 +7,7 @@ const gameConstructor = () => {
   const dependencies = {
     'deck': deckConstructor,
     'dealer': dealerConstructor,
-    'random': randomConstructor(),
+    'random': randomConstructor,
   };
   return lucky21Constructor((name) => dependencies[name]);
 };
@@ -22,7 +22,7 @@ const gameConstructorMockDealer= (deck) => {
   const dependenciesMockDealer = {
     'deck': () => deck,
     'dealer': mockDealer,
-    'random': randomConstructor(),
+    'random': randomConstructor,
   };
   return lucky21Constructor((name) => dependenciesMockDealer[name]);
 };
@@ -385,10 +385,6 @@ describe('getCard', () => {
     deck = [
       '10H', '09S', '01D', '05L',
     ];
-
-    const dealer = dealerConstructor();
-    // Override the shuffle to do nothing.
-    dealer.shuffle = (deck) => {};
 
     // Inject our dependencies
     const game = gameConstructorMockDealer(deck);

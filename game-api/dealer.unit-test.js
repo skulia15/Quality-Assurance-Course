@@ -1,15 +1,15 @@
 function newRandom(randomReturnValues) {
   let i = 0;
-  return {
+  return () => ({
     randomInt: (min, max) => {
       return randomReturnValues[i++];
     },
-  };
+  });
 }
 
 describe('dealer.js - shuffle', () => {
   // 2
-  test('dealer should should shuffle cards', () => {
+  test('dealer should shuffle the cards', () => {
     // Arrange
     const dependencies = {
       'random': newRandom([2, 1]),
@@ -19,15 +19,14 @@ describe('dealer.js - shuffle', () => {
       return dependencies[name];
     });
     const deck = ['a', 'b', 'c'];
-
     // Act
-    dealer.shuffle(deck);
+    dealer.shuffle(deck, dependencies['random']);
 
     // Assert
     expect(deck).toEqual(['c', 'b', 'a']);
   });
 
-  test('dealer should should not shuffle empty deck', () => {
+  test('dealer should not shuffle an empty deck', () => {
     // Arrange
     const dependencies = {
       'random': newRandom([2, 1]),
@@ -39,13 +38,13 @@ describe('dealer.js - shuffle', () => {
     const deck = [];
 
     // Act
-    dealer.shuffle(deck);
+    dealer.shuffle(deck, dependencies['random']);
 
     // Assert
     expect(deck).toEqual([]);
   });
 
-  test('dealer should should shuffle two deck differenly given two different parametes to random function', () => {
+  test('dealer should shuffle two decks differenly given two different parametes to random function', () => {
     // Arrange
     const dependencies = {
       'random': newRandom([2, 1]),
@@ -65,8 +64,8 @@ describe('dealer.js - shuffle', () => {
     const deck2 = [1, 2, 3, 4];
 
     // Act
-    dealer.shuffle(deck);
-    dealer2.shuffle(deck2);
+    dealer.shuffle(deck, dependencies['random']);
+    dealer2.shuffle(deck2, dependencies2['random']);
 
     // Assert
     expect(deck).not.toEqual(deck2);
@@ -77,9 +76,7 @@ describe('dealer.js - draw', () => {
   // 2
   test('dealer should draw a card', () => {
     // Arrange
-    // const dependencies = {
-    //   'random': newRandom([2, 1]),
-    // };
+
     const newDealer = require('./dealer.js');
     const dealer = newDealer();
     const deck = ['a', 'b', 'c'];
@@ -93,9 +90,7 @@ describe('dealer.js - draw', () => {
 
   test('dealer should draw undefined when deck is empty', () => {
     // Arrange
-    // const dependencies = {
-    //   'random': newRandom([2, 1]),
-    // };
+
     const newDealer = require('./dealer.js');
     const dealer = newDealer();
     const deck = [];

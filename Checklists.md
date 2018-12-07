@@ -68,7 +68,4 @@
 - [x] Hand in your assignment
 
 
-ATHATHATHATHATHATHATHATHATHATHATHATHATH
-ATH! ATH !
-MUNA AÐ ÞAÐ ER TODO Í DEPLOY SCRIPTUNNI!!!
-LEITA AF öllum todos
+
