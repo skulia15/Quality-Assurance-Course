@@ -115,5 +115,12 @@ module.exports = (context) => {
     guessOver21: (game) => {
       game.state.card = dealer.draw(deck);
     },
+    getState: (game) => {
+      return {
+        card: game.state.card,
+        cards: game.state.cards,
+        total: game.getTotal(game),
+      };
+    },
   };
 };
