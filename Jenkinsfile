@@ -11,7 +11,7 @@ node {
 
     // Install our project dependencies, in our case we only have to install our npm packages.
     stage("Setup") {
-        sh "cd game-api ; npm install --production"
+        sh "cd game-api ; npm install"
     }
 
     stage("Lint") {
