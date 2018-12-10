@@ -1,3 +1,8 @@
+# Top of file
+variable "environment" {
+  type = "string"
+}
+
 # Declare aws as the provider for terraform.
 # Tell terraform the location of our credentials file in order to run commands on aws.
 # Tell terraform which region we are using.
@@ -9,7 +14,7 @@ provider "aws" {
 # Define a security group for the instance with the name GameSecurityGroup.
 # This configures the connections for the instance. Which ports and networking protocol to use.
 resource "aws_security_group" "game_security_group" {
-  name   = "GameSecurityGroup"
+  name   = "GameSecurityGroup_${var.environment}"
 
   ingress {
     from_port   = 22
@@ -42,7 +47,7 @@ resource "aws_instance" "game_server" {
   key_name               = "GameKeyPair"
   vpc_security_group_ids = ["${aws_security_group.game_security_group.id}"]
   tags {
-    Name = "GameServer"
+    Name = "GameServer_${var.environment}"
   }
   # Moves the initialize game script from our local machine to the home directory of our instance with ssh connection.
   provisioner "file" {
