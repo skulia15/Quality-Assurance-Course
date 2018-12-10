@@ -26,3 +26,6 @@ http://34.201.33.0:3000/status
 To start a new game, post to
 http://34.201.33.0:3000/start
 
+Credentials to access Jenkins:
+Username: DummyAccount
+Password: DummyAcc
