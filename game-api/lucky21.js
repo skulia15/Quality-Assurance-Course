@@ -123,7 +123,7 @@ module.exports = (context) => {
         card: game.state.card,
         cards: game.state.cards,
         total: game.getTotal(game),
-        isGameOver: game.isGameOver(game),
+        gameOver: game.isGameOver(game),
         playerWon: game.playerWon(game),
       };
     },
