@@ -1,4 +1,5 @@
 *.log
+coverage/
 
 #npm
 node_modules/
