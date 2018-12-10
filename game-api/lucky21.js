@@ -115,6 +115,9 @@ module.exports = (context) => {
     guessOver21: (game) => {
       game.state.card = dealer.draw(deck);
     },
+    // Get the board state, the fields are up to you but should not contain
+    // sensitive data that the player should not know.
+    // This is what is returned by the API when the player GETs /state
     getState: (game) => {
       return {
         card: game.state.card,
