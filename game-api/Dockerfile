@@ -16,3 +16,6 @@ COPY . .
 RUN npm install --production
 # Main command, starts upp the app.js file.
 CMD node app.js
+
+# Give postgres time to setup before we try to migrate.
+CMD sleep 5 && npm run migratedb:pg && node app.js

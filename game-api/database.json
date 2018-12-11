@@ -1,0 +1,13 @@
+{
+    "pg": {
+      "driver": "pg",
+      "host": "item_db_container",
+      "database": "item_db",
+      "user": "root",
+      "password": "root123",
+      "schema": "postgres",
+      "port": 5432,
+      "max": 10,
+      "idleTimeoutMillis": 30000
+    }
+  }
