@@ -8,6 +8,11 @@ module.exports = function(context) {
 
   const app = express();
 
+  app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
+
   app.get('/status', (req, res) => {
     res.statusCode = 200;
     res.send('The API is running!\n');
@@ -15,13 +20,18 @@ module.exports = function(context) {
 
   let game = undefined;
 
-  // Starts a new game.
-  app.post('/stats', (req, res) => {
+  // Gets history of played games
+  app.get('/stats', (req, res) => {
+    console.log('-----YOU ARE HERE-----');
     database.getTotalNumberOfGames((totalNumberOfGames) => {
       database.getTotalNumberOfWins((totalNumberOfWins) => {
         database.getTotalNumberOf21((totalNumberOf21) => {
-          // Week 3
+          console.log('---query finished---');
           res.statusCode = 200;
+          console.log('totalNumberOfGames ', totalNumberOfGames);
+          console.log('totalNumberOfWins ', totalNumberOfWins);
+          console.log('totalNumberOf21 ', totalNumberOf21);
+
           res.send({
             totalNumberOfGames: totalNumberOfGames,
             totalNumberOfWins: totalNumberOfWins,
@@ -52,6 +62,16 @@ module.exports = function(context) {
     } else {
       game = lucky21Constructor(context);
       const msg = 'Game started';
+      if (game.getCardsValue(game) == 21) {
+        const won = game.playerWon(game);
+        const score = game.getCardsValue(game);
+        const total = game.getTotal(game);
+        database.insertResult(won, score, total, () => {
+          console.log('Game result inserted to database');
+        }, (err) => {
+          console.log('Failed to insert game result, Error:' + JSON.stringify(err));
+        });
+      }
       res.statusCode = 201;
       res.send(msg);
     }
@@ -111,7 +131,7 @@ module.exports = function(context) {
           const won = game.playerWon(game);
           const score = game.getCardsValue(game);
           const total = game.getTotal(game);
-          console.log('won: ' + won + 'score: ' + score + 'total: ' + total);
+          console.log('won: ' + won + ' score: ' + score + ' total: ' + total);
           database.insertResult(won, score, total, () => {
             console.log('Game result inserted to database');
           }, (err) => {

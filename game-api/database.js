@@ -32,6 +32,27 @@ module.exports = function(context) {
       }
     }), 2000);
 
+  function executeDBQuery(query, onError, onSuccess) {
+    const client = getClient();
+    client.connect((err) => {
+      if (err) {
+        onError(err);
+        client.end();
+      } else {
+        client.query(query, (err, res) => {
+          if (err) {
+            onError();
+          } else {
+            console.log(res);
+            onSuccess(res.rows[0].count);
+          }
+          client.end();
+        });
+      }
+    });
+    return;
+  }
+
   return {
     insertResult: (won, score, total, onSuccess, onError) => {
       const client = getClient();
@@ -40,6 +61,9 @@ module.exports = function(context) {
           onError(err);
           client.end();
         } else {
+          console.log('won: ' + won );
+          console.log('score: ' + score );
+          console.log('total: ' + total );
           const query = {
             text: 'INSERT INTO "GameResult" ("Won", "Score", "Total", "InsertDate") VALUES($1, $2, $3, CURRENT_TIMESTAMP);',
             values: [won, score, total],
@@ -58,36 +82,16 @@ module.exports = function(context) {
     },
     // Should call onSuccess with integer.
     getTotalNumberOfGames: (onSuccess, onError) => {
-      return executeDBQuery('SELECT COUNT(*) FROM GameResult', onError, onSuccess);
+      return executeDBQuery('SELECT COUNT(*) FROM "GameResult"', onError, onSuccess);
     },
     // Should call onSuccess with integer.
     getTotalNumberOfWins: (onSuccess, onError) => {
-      return executeDBQuery('SELECT COUNT(*) FROM GameResult WHERE Won = true', onError, onSuccess);
+      return executeDBQuery('SELECT COUNT(*) FROM "GameResult" WHERE "Won" = true', onError, onSuccess);
     },
     // Should call onSuccess with integer.
     getTotalNumberOf21: (onSuccess, onError) => {
-      onSuccess(0);
-      return executeDBQuery('SELECT COUNT(*) FROM GameResult WHERE Score = 21', onError, onSuccess);
+      return executeDBQuery('SELECT COUNT(*) FROM "GameResult" WHERE "Score" = 21', onError, onSuccess);
     },
   };
 };
-function executeDBQuery(query, onError, onSuccess) {
-  const client = getClient();
-  client.connect((err) => {
-    if (err) {
-      onError(err);
-      client.end();
-    } else {
-      client.query(query, (err) => {
-        if (err) {
-          onError();
-        } else {
-          onSuccess();
-        }
-        client.end();
-      });
-    }
-  });
-  return;
-}
 

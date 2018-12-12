@@ -120,8 +120,10 @@ module.exports = (context) => {
     // This is what is returned by the API when the player GETs /state
     getState: (game) => {
       return {
-        card: game.state.card,
         cards: game.state.cards,
+        cardsValue: game.getCardsValue(game),
+        card: game.state.card,
+        cardValue: game.getCardValue(game),
         total: game.getTotal(game),
         gameOver: game.isGameOver(game),
         playerWon: game.playerWon(game),

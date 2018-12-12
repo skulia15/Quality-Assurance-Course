@@ -13,6 +13,16 @@ services:
       POSTGRES_DB: 'item_db'
       POSTGRES_USER: 'root'
       POSTGRES_PASSWORD: 'root123'
+  lucky21-front-end:
+    image: skulipardus/hgop:front-end
+    ports:
+    - '4000:4000'
+    depends_on:
+    - item_db_container
+    environment:
+      PORT: 4000
+      API_PORT: 3000
+      API_URL: ${API_URL}
   # Postgres image to achieve functionality of API
   item_db_container:
     image: postgres
