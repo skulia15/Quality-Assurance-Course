@@ -13,7 +13,7 @@ version: '3'
 services:
   # Front end
   game_client:
-    image: skulipardus/lucky21-front-end:${GIT_COMMIT}
+    image: skulipardus/hgop-lucky21-front-end:${GIT_COMMIT}
     ports:
     - '4000:4000'
     depends_on:
@@ -25,8 +25,8 @@ services:
       API_URL: localhost
   # API
   game_api:
-    # image: skulipardus/hgop:${GIT_COMMIT}
-    image: skulipardus/hgop:testnewapi
+    image: skulipardus/hgop-api:${GIT_COMMIT}
+    # image: skulipardus/hgop-api:testnewapi
     ports:
     - '3000:3000'
     depends_on:
