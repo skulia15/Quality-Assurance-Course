@@ -1,52 +1,19 @@
-
-# version: '3'
-# services:
-#   lucky21-front-end:
-#     image: skulipardus/hgop:front-end${GIT_COMMIT}
-#     ports:
-#     - '4000:4000'
-#     depends_on:
-#     - my_item_repository
-#     environment:
-#       PORT: 4000
-#       API_PORT: 3000
-#       API_URL: ${API_URL}
-#   my_item_repository:
-#     #image: skulipardus/hgop:${GIT_COMMIT}
-#     image: skulipardus/hgop:testnewapi
-#     ports:
-#     - '3000:3000/tcp'
-#     depends_on:
-#     - item_db_container
-#     environment:
-#       PORT: 3000
-#       POSTGRES_HOST: 'item_db_container'
-#       POSTGRES_DB: 'item_db'
-#       POSTGRES_USER: 'root'
-#       POSTGRES_PASSWORD: 'root123'
-#   # Postgres image to achieve functionality of API
-#   item_db_container:
-#     image: postgres
-#     environment:
-#       POSTGRES_DB: 'item_db'
-#       POSTGRES_USER: 'root'
-#       POSTGRES_PASSWORD: 'root123'
-#   # Based on https://github.com/DataDog/docker-compose-example
-#   my_datadog_container:
-#     image: datadog/agent:latest
-#     environment:
-#       - DD_API_KEY=3ec06417f567569f0b2121d3ef306741
-#       - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
-#     volumes:
-#       - /var/run/docker.sock:/var/run/docker.sock
-#       - /proc/:/host/proc/:ro
-#       - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+  # my_datadog_container:
+  #   image: datadog/agent:latest
+  #   environment:
+  #     - DD_API_KEY=3ec06417f567569f0b2121d3ef306741
+  #     - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+  #     - DD_TAGS=${ENVIRONMENT}
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - /proc/:/host/proc/:ro
+  #     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
 
 version: '3'
 services:
   # Front end
   game_client:
-    image: skulipardus/hgop:front-end
+    image: skulipardus/lucky21-front-end:${GIT_COMMIT}
     ports:
     - '4000:4000'
     depends_on:
@@ -54,7 +21,8 @@ services:
     environment:
       PORT: 4000
       API_PORT: 3000
-      API_URL: ${API_URL}
+      # API_URL: ${API_URL}
+      API_URL: localhost
   # API
   game_api:
     # image: skulipardus/hgop:${GIT_COMMIT}
@@ -76,13 +44,3 @@ services:
       POSTGRES_DB: 'game_database'
       POSTGRES_USER: 'root'
       POSTGRES_PASSWORD: 'root123'
-  # my_datadog_container:
-  #   image: datadog/agent:latest
-  #   environment:
-  #     - DD_API_KEY=3ec06417f567569f0b2121d3ef306741
-  #     - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
-  #     - DD_TAGS=${ENVIRONMENT}
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #     - /proc/:/host/proc/:ro
-  #     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
