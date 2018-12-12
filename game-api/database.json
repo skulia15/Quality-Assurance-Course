@@ -1,8 +1,8 @@
 {
     "pg": {
       "driver": "pg",
-      "host": "item_db_container",
-      "database": "item_db",
+      "host": "game_database_container",
+      "database": "game_database",
       "user": "root",
       "password": "root123",
       "schema": "postgres",

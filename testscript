@@ -1,0 +1,8 @@
+cd game-api
+docker build -t testnewapi .
+docker tag testnewapi skulipardus/hgop:testnewapi
+docker push skulipardus/hgop:testnewapi
+cd ..
+docker-compose pull
+export API_URL=localhost
+docker-compose up
