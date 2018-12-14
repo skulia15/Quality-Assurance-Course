@@ -6,9 +6,9 @@ module.exports = function(context) {
   const configConstructor = context('config');
   const config = configConstructor(context);
   const lucky21Constructor = context('lucky21');
-  // const cors = require('cors');
   const app = express();
-  // app.use(cors());
+  const hotShotsConstructor = context('hsClient');
+  const hotShots = hotShotsConstructor(context);
 
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -62,6 +62,7 @@ module.exports = function(context) {
       const msg = 'Game started';
       res.statusCode = 201;
       res.send(msg);
+      hotShots.increment('games.started');
     }
   });
 

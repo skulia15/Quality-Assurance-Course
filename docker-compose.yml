@@ -1,16 +1,17 @@
-  # my_datadog_container:
-  #   image: datadog/agent:latest
-  #   environment:
-  #     - DD_API_KEY=3ec06417f567569f0b2121d3ef306741
-  #     - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
-  #     - DD_TAGS=${ENVIRONMENT}
-  #   volumes:
-  #     - /var/run/docker.sock:/var/run/docker.sock
-  #     - /proc/:/host/proc/:ro
-  #     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
 
 version: '3'
 services:
+  # DataDog
+  my_datadog_container:
+    image: datadog/agent:latest
+    environment:
+      - DD_API_KEY=3ec06417f567569f0b2121d3ef306741
+      - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+      - DD_TAGS=env:${ENVIRONMENT}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
   # Front end
   game_client:
     image: skulipardus/hgop-lucky21-front-end:${GIT_COMMIT}
