@@ -130,7 +130,6 @@ module.exports = function(context) {
         res.statusCode = 201;
         res.send(game.getState(game));
         hotShots.increment('games.TimesOver21Guess');
-
       }
     } else {
       const msg = 'Game not started';
