@@ -11,4 +11,5 @@ WORKDIR /code
 COPY package.json package.json
 RUN yarn install
 COPY . .
+RUN mkdir -p dist
 CMD ["yarn", "start"]

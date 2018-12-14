@@ -26,17 +26,17 @@ node {
     stage("Test") {
         sh "cd game-api ; npm run test:unit"
 
-    step([
-        $class: 'CloverPublisher',
-        cloverReportDir: 'coverage',
-        cloverReportFileName: 'clover.xml',
-        healthyTarget: [methodCoverage: 80, conditionalCoverage: 80, statementCoverage: 80],
-        unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
-        failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
-        ])
+        step([
+            $class: 'CloverPublisher',
+            cloverReportDir: 'coverage',
+            cloverReportFileName: 'clover.xml',
+            healthyTarget: [methodCoverage: 80, conditionalCoverage: 80, statementCoverage: 80],
+            unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
+            failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
+            ])
     }
     
-    build job: 'Deployment stage', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]
     build job: 'API Test Job', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]
     build job: 'Capacity Test Job', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]
+    build job: 'Deployment stage', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]
 }
