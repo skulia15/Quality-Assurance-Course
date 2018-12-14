@@ -33,4 +33,5 @@ Public Url to DataDog dashboard: https://p.datadoghq.com/sb/60aa4f54b-b6b0b8d9da
 
 URL TO CURRENTLY RUNNING INSTANCE HERE
 
-INCLUDE SC here
+Screenshot of DataDog Dashboard
+![alt text](https://github.com/skulia15/Quality-Assurance-Course/blob/master/assignments/DataDog%20Screenshot.png)
