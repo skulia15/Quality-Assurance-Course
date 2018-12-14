@@ -5,6 +5,7 @@ const apiUrl = `http://${ process.env.API_URL }:${ process.env.API_PORT }`;
  * Starts game from game api, then retrieves game state
  */
 export const startGame = () =>
+  console.log('Starting game. call to ' + apiUrl + '/start');
   axios.post(`${apiUrl}/start`).then(res => getState());
 
 /**
