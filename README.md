@@ -25,3 +25,12 @@ http://34.201.33.0:3000/status
 
 To start a new game, post to
 http://34.201.33.0:3000/start
+
+Week 3 Handin:
+Jenkins instance url: http://34.230.14.142:8080/
+
+Public Url to DataDog dashboard: https://p.datadoghq.com/sb/60aa4f54b-b6b0b8d9daf04bb02109379a0c83c334
+
+URL TO CURRENTLY RUNNING INSTANCE HERE
+
+INCLUDE SC here
