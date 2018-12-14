@@ -1,6 +1,8 @@
 import axios from "axios";
 const apiUrl = `http://${ process.env.API_URL }:${ process.env.API_PORT }`;
+console.log(`http://${ process.env.API_URL }:${ process.env.API_PORT }`);
 
+console.log('----IN UTILS----');
 /**
  * Starts game from game api, then retrieves game state
  */
